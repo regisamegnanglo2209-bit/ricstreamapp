@@ -130,7 +130,7 @@ export default function CheckoutPage() {
             <div className="space-y-2">
               <Label htmlFor="phone">Numéro de Téléphone</Label>
               <div className="flex gap-2">
-                 <Select name="phone_prefix" defaultValue="+221">
+                 <Select name="phone_prefix" defaultValue="+229">
                     <SelectTrigger className="w-[140px]">
                       <SelectValue placeholder="Prefix" />
                     </SelectTrigger>
