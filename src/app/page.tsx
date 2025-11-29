@@ -4,28 +4,23 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import CountdownTimer from '@/components/countdown-timer';
 import AiAssistant from '@/components/ai-assistant';
-import { ArrowRight, Tv, Smartphone, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Tv, Smartphone, ShieldCheck, CheckCircle } from 'lucide-react';
 import { placeholderImages } from '@/lib/placeholder-images';
 
 const heroImage = placeholderImages.find(p => p.id === 'hero-stadium');
 
 const benefits = [
-  {
-    icon: <Tv className="h-10 w-10 text-accent" />,
-    title: 'Tous les sports, un seul endroit',
-    description: 'Des ligues locales aux championnats internationaux, accédez à tous les matchs que vous aimez.',
-  },
-  {
-    icon: <Smartphone className="h-10 w-10 text-accent" />,
-    title: 'Streamez n\'importe où',
-    description: 'Profitez d\'un streaming fluide sur votre téléphone, tablette ou smart TV avec notre application dédiée.',
-  },
-  {
-    icon: <ShieldCheck className="h-10 w-10 text-accent" />,
-    title: 'Sécurisé & Fiable',
-    description: 'Notre service est soutenu par des passerelles de paiement sécurisées et une technologie de streaming fiable.',
-  },
+    { text: "Accès à vie" },
+    { text: "Aucun abonnement mensuel" },
+    { text: "Tous les sports en direct (Football, Basketball, Boxe, MMA, etc.)" },
+    { text: "Qualité optimale selon l’appareil" },
+    { text: "Compatible smartphone, PC, TV" },
+    { text: "Interface simple et rapide" },
+    { text: "Guide d’installation inclus" },
+    { text: "Assistance personnalisée" },
+    { text: "Garantie satisfaction ou remboursement" }
 ];
+
 
 export default function Home() {
   const offerEndDate = new Date();
@@ -51,8 +46,8 @@ export default function Home() {
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl font-headline text-primary animate-fade-in-down">
               FINIS LES ABONNEMENTS MENSUELS !
             </h1>
-            <p className="max-w-[700px] text-lg text-gray-200 md:text-xl">
-              Regardez le sport en direct à vie. Ne manquez plus un seul moment de l'action.
+            <p className="max-w-[800px] text-lg text-gray-200 md:text-xl">
+              REGARDE LE SPORT EN DIRECT À VIE POUR 3 900 FCFA
             </p>
             <div className="flex flex-col items-center space-y-4">
               <p className="text-accent font-semibold text-lg">Offre à durée limitée se terminant dans :</p>
@@ -75,17 +70,22 @@ export default function Home() {
       {/* Benefits Section */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
         <div className="container px-4 md:px-6">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="flex flex-col items-center text-center p-6 border-2 border-transparent hover:border-accent transition-all duration-300 transform hover:-translate-y-2 bg-card">
-                <CardContent className="flex flex-col items-center space-y-4">
-                  {benefit.icon}
-                  <h3 className="text-2xl font-bold font-headline">{benefit.title}</h3>
-                  <p className="text-muted-foreground">{benefit.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+            <div className="text-center mb-12">
+                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">
+                    Découvrez ce que le PACKRICSTREAMING vous offre
+                 </h2>
+                 <p className="mt-4 text-muted-foreground md:text-xl max-w-3xl mx-auto">
+                    Une solution complète pour ne plus jamais rater un match, sans les tracas et les coûts des abonnements traditionnels.
+                 </p>
+            </div>
+            <div className="max-w-4xl mx-auto grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {benefits.map((benefit, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                        <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+                        <span className="text-lg text-foreground">{benefit.text}</span>
+                    </div>
+                ))}
+            </div>
         </div>
       </section>
 
