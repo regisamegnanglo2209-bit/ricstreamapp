@@ -36,7 +36,7 @@ function SubmitButton() {
   return (
     <Button type="submit" className="w-full" size="lg" disabled={pending}>
       {pending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-      Payer 200 FCFA & Obtenir l'Accès
+      Payer 3 900 FCFA & Obtenir l'Accès
     </Button>
   );
 }
@@ -71,7 +71,7 @@ export default function CheckoutPage() {
             <div className="flex justify-between items-center">
                 <h3 className="font-semibold text-lg flex items-center gap-2"><Tag className="h-5 w-5 text-primary"/>Résumé de la commande</h3>
                 <div className="text-right">
-                    <span className="text-2xl font-bold text-primary">200 FCFA</span>
+                    <span className="text-2xl font-bold text-primary">3 900 FCFA</span>
                     <del className="text-sm text-muted-foreground ml-2">20 000 FCFA</del>
                 </div>
             </div>
