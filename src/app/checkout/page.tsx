@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import { CheckCircle, Download, BookOpen, Phone, Loader2, AlertCircle } from 'lucide-react';
+import { CheckCircle, Download, BookOpen, Phone, Loader2, AlertCircle, Tag } from 'lucide-react';
 import Link from 'next/link';
 
 const initialState = {
@@ -23,7 +23,7 @@ function SubmitButton() {
   return (
     <Button type="submit" className="w-full" size="lg" disabled={pending}>
       {pending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-      Payer & Obtenir l'Accès Instantané
+      Payer 19,99€ & Obtenir l'Accès
     </Button>
   );
 }
@@ -93,6 +93,16 @@ export default function CheckoutPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
+          <div className="rounded-lg bg-card border p-4 mb-6">
+            <div className="flex justify-between items-center">
+                <h3 className="font-semibold text-lg flex items-center gap-2"><Tag className="h-5 w-5 text-primary"/>Résumé de la commande</h3>
+                <div className="text-right">
+                    <span className="text-2xl font-bold text-primary">19,99€</span>
+                    <del className="text-sm text-muted-foreground ml-2">99,99€</del>
+                </div>
+            </div>
+            <p className="text-sm text-muted-foreground mt-2">Vous payez une seule fois et obtenez un accès à vie.</p>
+          </div>
           <form action={formAction} className="space-y-6">
             <div className="space-y-2">
               <Label htmlFor="name">Nom Complet</Label>

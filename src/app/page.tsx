@@ -57,6 +57,9 @@ export default function Home() {
             <div className="flex flex-col items-center space-y-4">
               <p className="text-accent font-semibold text-lg">Offre à durée limitée se terminant dans :</p>
               <CountdownTimer targetDate={offerEndDate.toISOString()} />
+              <div className="text-2xl text-white my-4">
+                Accès à vie pour seulement <span className="font-bold text-accent text-3xl">19,99€</span> <del className="text-muted-foreground text-xl">99,99€</del>
+              </div>
               <Button asChild size="lg" className="group bg-primary hover:bg-primary/90 text-primary-foreground text-lg">
                 <Link href="/checkout">
                   Obtenez un accès instantané
