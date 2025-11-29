@@ -91,14 +91,14 @@ export default function ContactPage() {
             Pour une assistance immédiate, veuillez utiliser l'une des options ci-dessous.
           </p>
           <div className="space-y-4">
-            <Button asChild variant="outline" className="w-full justify-start text-lg p-6">
-              <Link href="#" target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="mr-4 h-6 w-6 text-primary" />
-                Chat en direct
+             <Button asChild variant="outline" className="w-full justify-start text-lg p-6">
+              <Link href="mailto:support@ricstreaming.com">
+                <Mail className="mr-4 h-6 w-6 text-primary" />
+                support@ricstreaming.com
               </Link>
             </Button>
             <Button asChild variant="outline" className="w-full justify-start text-lg p-6">
-              <Link href="#" target="_blank" rel="noopener noreferrer">
+              <Link href="https://wa.me/22901924287" target="_blank" rel="noopener noreferrer">
                 <Phone className="mr-4 h-6 w-6 text-primary" />
                 Contacter sur WhatsApp
               </Link>
