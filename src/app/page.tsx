@@ -86,7 +86,7 @@ export default function Home() {
             priority
           />
         )}
-        <div className="absolute inset-0 bg-black/70 z-10"></div>
+        <div className="absolute inset-0 bg-black/60 z-10"></div>
         <div className="container relative z-20 px-4 md:px-6">
           <div className="flex flex-col items-center space-y-6">
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl font-headline text-primary animate-fade-in-down">
