@@ -52,7 +52,7 @@ export async function submitContactFormAction(prevState: any, formData: FormData
     };
   }
 
-  // Simulate saving to a database
+  // TODO: Envoyer l'email ou sauvegarder le message
   console.log('Contact form submitted:', validatedFields.data);
 
   return {
@@ -74,7 +74,7 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
     const phone_prefix = formData.get('phone_prefix');
     const phone_number = formData.get('phone_number');
     
-    const fullPhoneNumber = `${phone_prefix}${phone_number}`;
+    const fullPhoneNumber = `${phone_prefix}${phone_number}`.replace('+', '');
 
     const validatedFields = checkoutSchema.safeParse({
         name: formData.get('name'),
@@ -83,17 +83,7 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
     });
     
     if (!validatedFields.success) {
-        // We need to flatten the errors to get a specific error for the combined phone field
         const fieldErrors = validatedFields.error.flatten().fieldErrors;
-        if(fieldErrors.phone) {
-            // Assign phone error to phone_number field to display it correctly
-            return {
-                errors: { ...fieldErrors, phone: fieldErrors.phone },
-                message: "Veuillez corriger les erreurs ci-dessous.",
-                success: false,
-            };
-        }
-
         return {
             errors: fieldErrors,
             message: "Veuillez corriger les erreurs ci-dessous.",
@@ -101,18 +91,51 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
         };
     }
     
-    const finalData = {
-        name: validatedFields.data.name,
-        email: validatedFields.data.email,
-        phone: validatedFields.data.phone
-    };
+    const { name, email, phone } = validatedFields.data;
+    const orderNumber = `RS-${Date.now()}`;
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL;
 
-    // Here you would integrate with MoneyFusion payment gateway
-    // and trigger the redirection on success.
-    console.log("Processing payment for:", finalData);
-    
-    const orderNumber = `RS-${Math.floor(Math.random() * 100000)}`;
+    try {
+        const response = await fetch('https://api.moneyfusion.net/v1/payment/init', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                api_key: process.env.MONEYFUSION_API_KEY,
+                amount: 3900,
+                currency: 'XOF',
+                description: `Paiement pour PACKRICSTREAMING - Commande ${orderNumber}`,
+                customer_name: name,
+                customer_email: email,
+                customer_phone: phone,
+                return_url: `${appUrl}/checkout/success?order=${orderNumber}`,
+                cancel_url: `${appUrl}/checkout`,
+                callback_url: `${appUrl}/api/payment/callback?order=${orderNumber}`,
+                metadata: {
+                  order_id: orderNumber,
+                }
+            })
+        });
 
-    // On successful payment, redirect to the success page.
-    redirect(`/checkout/success?order=${orderNumber}`);
+        const paymentData = await response.json();
+
+        if (paymentData.status === 'success' && paymentData.data.payment_url) {
+            redirect(paymentData.data.payment_url);
+        } else {
+             return {
+                errors: {},
+                message: `Erreur lors de l'initialisation du paiement: ${paymentData.message || 'Veuillez réessayer.'}`,
+                success: false,
+            };
+        }
+
+    } catch (error) {
+        console.error("Erreur de l'API MoneyFusion:", error);
+        return {
+            errors: {},
+            message: 'Le service de paiement est actuellement indisponible. Veuillez réessayer plus tard.',
+            success: false,
+        };
+    }
 }
