@@ -74,7 +74,7 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
     const phone_prefix = formData.get('phone_prefix');
     const phone_number = formData.get('phone_number');
     
-    const fullPhoneNumber = `${phone_prefix}${phone_number}`.replace('+', '');
+    const fullPhoneNumber = `${phone_prefix}${phone_number}`.replace(/\+/g, '');
 
     const validatedFields = checkoutSchema.safeParse({
         name: formData.get('name'),
@@ -93,16 +93,16 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
     
     const { name, email, phone } = validatedFields.data;
     const orderNumber = `RS-${Date.now()}`;
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL;
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
 
     try {
         const response = await fetch('https://api.moneyfusion.net/v1/payment/init', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${process.env.MONEYFUSION_API_KEY}`
             },
             body: JSON.stringify({
-                api_key: process.env.MONEYFUSION_API_KEY,
                 amount: 3900,
                 currency: 'XOF',
                 description: `Paiement pour PACKRICSTREAMING - Commande ${orderNumber}`,
@@ -111,7 +111,7 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
                 customer_phone: phone,
                 return_url: `${appUrl}/checkout/success?order=${orderNumber}`,
                 cancel_url: `${appUrl}/checkout`,
-                callback_url: `${appUrl}/api/payment/callback?order=${orderNumber}`,
+                callback_url: `${appUrl}/api/payment/callback`,
                 metadata: {
                   order_id: orderNumber,
                 }
