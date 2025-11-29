@@ -9,8 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import { CheckCircle, Download, BookOpen, Phone, Loader2, AlertCircle, Tag } from 'lucide-react';
-import Link from 'next/link';
+import { Loader2, AlertCircle, Tag } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const initialState = {
@@ -54,47 +53,6 @@ export default function CheckoutPage() {
       });
     }
   }, [state, toast]);
-
-  if (state.success) {
-    return (
-      <div className="container mx-auto max-w-2xl py-12 px-4 md:px-6">
-        <Card className="animate-fade-in-up border-2 border-primary shadow-lg shadow-primary/20">
-          <CardHeader className="text-center">
-            <CheckCircle className="mx-auto h-16 w-16 text-green-500 mb-4" />
-            <CardTitle className="text-3xl font-bold text-primary">Achat Terminé !</CardTitle>
-            <CardDescription className="text-lg">
-              Bienvenue chez RicStreaming ! Votre accès est prêt.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <p className="text-center text-muted-foreground">
-              Un e-mail de confirmation vous a été envoyé avec tout ce dont vous avez besoin pour commencer.
-            </p>
-            <div className="space-y-4 rounded-lg border p-4">
-              <h3 className="font-semibold text-lg text-center">Prochaines Étapes :</h3>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3">
-                  <Download className="h-5 w-5 text-primary" />
-                  <span>Téléchargez l'APK depuis le lien dans votre e-mail.</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <BookOpen className="h-5 w-5 text-primary" />
-                  <span>Suivez notre guide d'installation simple.</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Phone className="h-5 w-5 text-primary" />
-                  <span>Contactez notre support si vous avez besoin d'aide.</span>
-                </li>
-              </ul>
-            </div>
-            <Button asChild className="w-full" variant="outline">
-                <Link href="/">Retour à l'accueil</Link>
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
 
   return (
     <div className="container mx-auto max-w-md py-12 px-4 md:px-6">

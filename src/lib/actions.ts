@@ -2,6 +2,7 @@
 
 import { z } from 'zod';
 import { getPersonalizedRecommendations } from '@/ai/flows/personalized-content-recommendations';
+import { redirect } from 'next/navigation';
 
 // AI Recommendation Action
 export async function getRecommendationsAction(
@@ -51,7 +52,7 @@ export async function submitContactFormAction(prevState: any, formData: FormData
     };
   }
 
-  // Simulate sending an email or saving to a database
+  // Simulate saving to a database
   console.log('Contact form submitted:', validatedFields.data);
 
   return {
@@ -107,16 +108,11 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
     };
 
     // Here you would integrate with MoneyFusion payment gateway
-    // and trigger the email delivery on success.
-    // We'll simulate a successful transaction.
+    // and trigger the redirection on success.
     console.log("Processing payment for:", finalData);
     
-    // Simulate email sending
-    console.log(`Sending APK, guide, and contact details to ${finalData.email}`);
+    const orderNumber = `RS-${Math.floor(Math.random() * 100000)}`;
 
-    return {
-        errors: {},
-        message: "Votre achat a été effectué avec succès !",
-        success: true,
-    };
+    // On successful payment, redirect to the success page.
+    redirect(`/checkout/success?order=${orderNumber}`);
 }
