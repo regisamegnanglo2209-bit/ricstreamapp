@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import CountdownTimer from '@/components/countdown-timer';
 import AiAssistant from '@/components/ai-assistant';
-import { ArrowRight, Tv, Smartphone, ShieldCheck, CheckCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, Star } from 'lucide-react';
 import { placeholderImages } from '@/lib/placeholder-images';
 
 const heroImage = placeholderImages.find(p => p.id === 'hero-stadium');
@@ -21,6 +21,23 @@ const benefits = [
     { text: "Garantie satisfaction ou remboursement" }
 ];
 
+const testimonials = [
+  {
+    name: 'Moussa T.',
+    country: 'Sénégal 🇸🇳',
+    text: 'Plus besoin de chercher des liens partout avant un match. Avec RicStreaming, tout est au même endroit, et en HD ! C\'est juste parfait.'
+  },
+  {
+    name: 'Aïcha K.',
+    country: 'Côte d\'Ivoire 🇨🇮',
+    text: 'J\'étais sceptique au début, mais l\'installation est un jeu d\'enfant. Et la qualité de l\'image, même sur ma télé, est bluffante. Je recommande !'
+  },
+  {
+    name: 'Abdoulaye B.',
+    country: 'Bénin 🇧🇯',
+    text: 'L\'accès à vie pour ce prix, c\'est une offre imbattable. Le service client est aussi très réactif. Vraiment satisfait de mon achat.'
+  }
+];
 
 export default function Home() {
   const offerEndDate = new Date();
@@ -89,15 +106,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* AI Assistant Section */}
+      {/* Testimonials Section */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-card">
+        <div className="container px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">
+              Ce que nos clients en pensent
+            </h2>
+            <p className="mt-4 text-muted-foreground md:text-xl max-w-3xl mx-auto">
+              Découvrez les témoignages de nos utilisateurs satisfaits à travers l'UEMOA.
+            </p>
+          </div>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="bg-background/50 p-6">
+                <CardContent className="p-0 flex flex-col h-full">
+                  <div className="flex mb-2">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-accent text-accent" />)}
+                  </div>
+                  <p className="text-muted-foreground italic mb-4 flex-grow">"{testimonial.text}"</p>
+                  <div className="font-semibold text-foreground">{testimonial.name}</div>
+                  <div className="text-sm text-muted-foreground">{testimonial.country}</div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AI Assistant Section */}
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
          <div className="container px-4 md:px-6">
           <AiAssistant />
         </div>
       </section>
 
       {/* Final CTA Section */}
-      <section className="w-full py-12 md:py-24 bg-background">
+      <section className="w-full py-12 md:py-24 bg-card">
         <div className="container flex flex-col items-center gap-4 px-4 text-center md:px-6">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline text-primary">
             Prêt à rejoindre l'action?
