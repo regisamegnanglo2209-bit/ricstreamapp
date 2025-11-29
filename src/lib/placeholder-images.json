@@ -2,9 +2,9 @@
   "placeholderImages": [
     {
       "id": "hero-stadium",
-      "description": "A vibrant and energetic sports stadium at night, filled with cheering fans and bright lights, conveying excitement.",
-      "imageUrl": "https://images.unsplash.com/photo-1608154119029-53f3c6ad12e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzcG9ydHMlMjBzdGFkaXVtfGVufDB8fHx8MTc2NDM5NDEwOXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "sports stadium"
+      "description": "Une voiture de Formule 1 en pleine course, capturant la vitesse et l'excitation des sports mécaniques.",
+      "imageUrl": "https://i.imgur.com/Squft5g.jpeg",
+      "imageHint": "formula 1 race"
     }
   ]
 }

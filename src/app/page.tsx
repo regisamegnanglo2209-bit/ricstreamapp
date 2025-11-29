@@ -79,7 +79,7 @@ export default function Home() {
         {heroImage && (
           <Image
             src={heroImage.imageUrl}
-            alt="Un stade de sport vibrant et énergique la nuit, rempli de fans en liesse et de lumières vives, transmettant l'excitation."
+            alt="Une voiture de Formule 1 en pleine course, capturant la vitesse et l'excitation des sports mécaniques."
             data-ai-hint={heroImage.imageHint}
             fill
             className="object-cover z-0"
