@@ -94,7 +94,16 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
     const { name, email, phone } = validatedFields.data;
     const orderNumber = `RS-${Date.now()}`;
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
-    const moneyFusionApiUrl = "https://www.pay.moneyfusion.net/RICSTREAMING/9e76e038cdb2986d/pay/";
+    const moneyFusionApiUrl = process.env.MONEYFUSION_API_URL;
+
+    if (!moneyFusionApiUrl) {
+        console.error("L'URL de l'API MoneyFusion n'est pas définie dans les variables d'environnement.");
+        return {
+            errors: {},
+            message: 'Le service de paiement est actuellement indisponible. Configuration manquante.',
+            success: false,
+        };
+    }
 
     const paymentPayload = {
       totalPrice: 3900,
@@ -144,7 +153,7 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
         console.error("Erreur de l'API MoneyFusion (catch):", error);
         return {
             errors: {},
-            message: 'Le service de paiement est actuellement indisponible. Veuillez réessayer plus tard.',
+            message: 'Le service de paiement est actuellement indisponible.',
             success: false,
         };
     }
