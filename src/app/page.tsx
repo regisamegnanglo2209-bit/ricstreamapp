@@ -4,8 +4,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import CountdownTimer from '@/components/countdown-timer';
 import AiAssistant from '@/components/ai-assistant';
-import { ArrowRight, CheckCircle, Star } from 'lucide-react';
+import { ArrowRight, CheckCircle, Star, Users } from 'lucide-react';
 import { placeholderImages } from '@/lib/placeholder-images';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const heroImage = placeholderImages.find(p => p.id === 'hero-stadium');
 
@@ -36,6 +43,16 @@ const testimonials = [
     name: 'Abdoulaye B.',
     country: 'Bénin 🇧🇯',
     text: 'L\'accès à vie pour ce prix, c\'est une offre imbattable. Le service client est aussi très réactif. Vraiment satisfait de mon achat.'
+  },
+  {
+    name: 'Fanta D.',
+    country: 'Mali 🇲🇱',
+    text: 'Le support est incroyable. J\'ai eu un petit souci de configuration et ils m\'ont aidé en moins de 5 minutes sur WhatsApp. Service au top !'
+  },
+  {
+    name: 'Idrissou O.',
+    country: 'Burkina Faso 🇧🇫',
+    text: 'Je suis un grand fan de MMA et je ne rate plus aucun combat. La qualité est stable et il n\'y a pas de coupures. Je suis ravi.'
   }
 ];
 
@@ -111,25 +128,45 @@ export default function Home() {
         <div className="container px-4 md:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">
-              Ce que nos clients en pensent
+              Ils nous ont fait confiance
             </h2>
             <p className="mt-4 text-muted-foreground md:text-xl max-w-3xl mx-auto">
-              Découvrez les témoignages de nos utilisateurs satisfaits à travers l'UEMOA.
+              Découvrez les témoignages de nos utilisateurs satisfaits.
             </p>
           </div>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="bg-background/50 p-6">
-                <CardContent className="p-0 flex flex-col h-full">
-                  <div className="flex mb-2">
-                    {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-accent text-accent" />)}
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full max-w-4xl mx-auto"
+          >
+            <CarouselContent>
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <div className="p-1 h-full">
+                    <Card className="bg-background/50 p-6 flex flex-col h-full">
+                      <CardContent className="p-0 flex flex-col flex-grow">
+                        <div className="flex mb-2">
+                          {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-accent text-accent" />)}
+                        </div>
+                        <p className="text-muted-foreground italic mb-4 flex-grow">"{testimonial.text}"</p>
+                        <div className="font-semibold text-foreground">{testimonial.name}</div>
+                        <div className="text-sm text-muted-foreground">{testimonial.country}</div>
+                      </CardContent>
+                    </Card>
                   </div>
-                  <p className="text-muted-foreground italic mb-4 flex-grow">"{testimonial.text}"</p>
-                  <div className="font-semibold text-foreground">{testimonial.name}</div>
-                  <div className="text-sm text-muted-foreground">{testimonial.country}</div>
-                </CardContent>
-              </Card>
-            ))}
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+           <div className="flex items-center justify-center mt-10 text-center">
+            <Users className="h-8 w-8 text-primary mr-3" />
+            <p className="text-xl text-muted-foreground">
+              Plus de <span className="font-bold text-foreground">1280</span> personnes sont déjà satisfaites de notre pack.
+            </p>
           </div>
         </div>
       </section>
