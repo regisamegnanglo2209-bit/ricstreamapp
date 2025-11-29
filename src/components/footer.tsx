@@ -13,8 +13,8 @@ export function Footer() {
             <Link href="/" className="transition-colors hover:text-primary">Accueil</Link>
             <Link href="/faq" className="transition-colors hover:text-primary">FAQ</Link>
             <Link href="/contact" className="transition-colors hover:text-primary">Contact</Link>
-            <Link href="/#" className="transition-colors hover:text-primary">Conditions de Service</Link>
-            <Link href="/#" className="transition-colors hover:text-primary">Politique de Confidentialité</Link>
+            <Link href="/terms" className="transition-colors hover:text-primary">Conditions de Service</Link>
+            <Link href="/privacy" className="transition-colors hover:text-primary">Politique de Confidentialité</Link>
           </nav>
         </div>
         <div className="text-center text-sm text-muted-foreground">
