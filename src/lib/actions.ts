@@ -63,7 +63,7 @@ export async function submitContactFormAction(prevState: any, formData: FormData
 }
 
 
-// Checkout Form Action (Simplified)
+// Checkout Form Action
 const checkoutSchema = z.object({
     name: z.string().min(2, { message: "Le nom doit comporter au moins 2 caractères." }),
     email: z.string().email({ message: "Veuillez saisir une adresse Gmail valide." }).refine(email => email.endsWith('@gmail.com'), { message: "Seules les adresses Gmail sont acceptées." }),
@@ -75,6 +75,7 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
     const phone_number = formData.get('phone_number');
     
     const fullPhoneNumber = `${phone_prefix}${phone_number}`.replace(/\+/g, '').replace(/\s/g, '');
+    const orderId = `RS-${Date.now()}`;
 
     const validatedFields = checkoutSchema.safeParse({
         name: formData.get('name'),
@@ -91,8 +92,55 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
         };
     }
     
-    const orderNumber = `RS-${Date.now()}`;
-    
-    // Redirect directly to success page for now
-    redirect(`/checkout/success?order=${orderNumber}`);
+    const moneyFusionApiUrl = process.env.MONEYFUSION_API_URL;
+    if (!moneyFusionApiUrl) {
+      console.error('MONEYFUSION_API_URL is not set');
+      return {
+        errors: {},
+        message: 'Service de paiement indisponible.',
+        success: false,
+      };
+    }
+
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+
+    const paymentData = {
+        totalPrice: 3900,
+        article: [{ "pack": 3900 }],
+        personal_Info: [{ userId: validatedFields.data.email, orderId: orderId }],
+        numeroSend: validatedFields.data.phone,
+        nomclient: validatedFields.data.name,
+        return_url: `${appUrl}/checkout/success?order=${orderId}`,
+        webhook_url: `${appUrl}/api/payment/webhook`,
+    };
+
+    try {
+        const response = await fetch(moneyFusionApiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(paymentData),
+        });
+
+        const result = await response.json();
+        
+        if (result.statut === true && result.url) {
+            redirect(result.url);
+        } else {
+            console.error('MoneyFusion API Error:', result.message);
+            return {
+                errors: {},
+                message: result.message || 'Une erreur est survenue lors de l\'initialisation du paiement.',
+                success: false,
+            };
+        }
+    } catch (error) {
+        console.error('Failed to process payment:', error);
+        return {
+            errors: {},
+            message: 'Service de paiement indisponible.',
+            success: false,
+        };
+    }
 }
