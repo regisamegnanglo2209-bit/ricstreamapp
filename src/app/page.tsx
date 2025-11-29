@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import CountdownTimer from '@/components/countdown-timer';
 import AiAssistant from '@/components/ai-assistant';
-import { ArrowRight, CheckCircle, Star, Users } from 'lucide-react';
+import { ArrowRight, CheckCircle, Star, Users, Tv } from 'lucide-react';
 import { placeholderImages } from '@/lib/placeholder-images';
 import {
   Carousel,
@@ -55,6 +55,18 @@ const testimonials = [
     text: 'Je suis un grand fan de MMA et je ne rate plus aucun combat. La qualité est stable et il n\'y a pas de coupures. Je suis ravi.'
   }
 ];
+
+const galleryImages = [
+  { src: 'https://i.imgur.com/oNobQ4f.jpeg', alt: 'Match de football intense' },
+  { src: 'https://i.imgur.com/nHAvCkm.jpeg', alt: 'Combat de boxe' },
+  { src: 'https://i.imgur.com/Squft5g.jpeg', alt: 'Course de Formule 1' },
+  { src: 'https://i.imgur.com/fiRxZH7.jpeg', alt: 'Match de basketball' },
+  { src: 'https://i.imgur.com/nvCqmvH.jpeg', alt: 'Match de tennis' },
+  { src: 'https://i.imgur.com/U87kOC2.jpeg', alt: 'Joueur de football célébrant un but' },
+  { src: 'https://i.imgur.com/S3tiWt4.jpeg', alt: 'Combat de MMA' },
+  { src: 'https://i.imgur.com/oIKK4tB.jpeg', alt: 'Vue intérieure d\'un stade de football' },
+];
+
 
 export default function Home() {
   const offerEndDate = new Date();
@@ -123,8 +135,36 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Image Gallery Section */}
       <section className="w-full py-12 md:py-24 lg:py-32 bg-card">
+        <div className="container px-4 md:px-6">
+          <div className="text-center mb-12">
+            <Tv className="mx-auto h-12 w-12 text-primary mb-4" />
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">
+              Vivez l'action en direct
+            </h2>
+            <p className="mt-4 text-muted-foreground md:text-xl max-w-3xl mx-auto">
+              Plongez au cœur de vos sports préférés avec une qualité d'image exceptionnelle.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {galleryImages.map((image, index) => (
+              <div key={index} className="overflow-hidden rounded-lg shadow-lg hover:shadow-primary/50 transition-shadow">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={400}
+                  height={400}
+                  className="w-full h-full object-cover aspect-square transform hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
         <div className="container px-4 md:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">
@@ -145,7 +185,7 @@ export default function Home() {
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                   <div className="p-1 h-full">
-                    <Card className="bg-background/50 p-6 flex flex-col h-full">
+                    <Card className="bg-card p-6 flex flex-col h-full">
                       <CardContent className="p-0 flex flex-col flex-grow">
                         <div className="flex mb-2">
                           {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-accent text-accent" />)}
@@ -172,14 +212,14 @@ export default function Home() {
       </section>
 
       {/* AI Assistant Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-card">
          <div className="container px-4 md:px-6">
           <AiAssistant />
         </div>
       </section>
 
       {/* Final CTA Section */}
-      <section className="w-full py-12 md:py-24 bg-card">
+      <section className="w-full py-12 md:py-24 bg-background">
         <div className="container flex flex-col items-center gap-4 px-4 text-center md:px-6">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline text-primary">
             Prêt à rejoindre l'action?
