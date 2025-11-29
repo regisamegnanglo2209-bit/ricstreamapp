@@ -15,6 +15,12 @@ export default function PrivacyPolicyPage() {
 
       <div className="space-y-8 text-muted-foreground leading-relaxed">
         <section>
+          <h2 className="text-2xl font-bold text-foreground mb-4 font-headline">Introduction</h2>
+          <p>
+            Cette politique de confidentialité s'applique au service RicStreaming, fourni par RIC SERVICES. Nous nous engageons à protéger la confidentialité de nos utilisateurs.
+          </p>
+        </section>
+        <section>
           <h2 className="text-2xl font-bold text-foreground mb-4 font-headline">1. Collecte des Informations</h2>
           <p>
             Nous collectons les informations que vous nous fournissez directement lors de l'achat de notre Pack. Cela inclut :
@@ -42,7 +48,7 @@ export default function PrivacyPolicyPage() {
         <section>
           <h2 className="text-2xl font-bold text-foreground mb-4 font-headline">3. Partage des Informations</h2>
           <p>
-            Nous ne vendons, n'échangeons ni ne transférons vos informations personnelles identifiables à des tiers. Cela n'inclut pas les tiers de confiance qui nous aident à exploiter notre site web ou à servir nos utilisateurs (comme les processeurs de paiement), tant que ces parties conviennent de garder ces informations confidentielles.
+            RIC SERVICES ne vend, n'échange ni ne transfère vos informations personnelles identifiables à des tiers. Cela n'inclut pas les tiers de confiance qui nous aident à exploiter notre site web ou à servir nos utilisateurs (comme les processeurs de paiement), tant que ces parties conviennent de garder ces informations confidentielles.
           </p>
         </section>
 
@@ -70,7 +76,7 @@ export default function PrivacyPolicyPage() {
         <section>
           <h2 className="text-2xl font-bold text-foreground mb-4 font-headline">7. Contact</h2>
           <p>
-            Si vous avez des questions concernant cette politique de confidentialité, vous pouvez nous contacter via notre page de contact.
+            Si vous avez des questions concernant cette politique de confidentialité, vous pouvez nous contacter à l'adresse <a href="mailto:support@ricstreaming.com" className="text-primary hover:underline">support@ricstreaming.com</a>.
           </p>
         </section>
       </div>

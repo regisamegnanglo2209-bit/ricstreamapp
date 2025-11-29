@@ -17,7 +17,7 @@ export default function TermsOfServicePage() {
         <section>
           <h2 className="text-2xl font-bold text-foreground mb-4 font-headline">1. Introduction</h2>
           <p>
-            Bienvenue sur RicStreaming. En accédant à notre site web et en utilisant nos services, vous acceptez d'être lié par les présentes Conditions de Service. Veuillez les lire attentivement.
+            Bienvenue sur RicStreaming, un service proposé par RIC SERVICES. En accédant à notre site web et en utilisant nos services, vous acceptez d'être lié par les présentes Conditions de Service. Veuillez les lire attentivement.
           </p>
         </section>
 
@@ -36,7 +36,7 @@ export default function TermsOfServicePage() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-foreground mb-4 font-headline">4. Livraison du Produit</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-4 fontheadline">4. Livraison du Produit</h2>
           <p>
             Après confirmation du paiement, vous recevrez un e-mail à l'adresse fournie contenant un lien de téléchargement pour l'APK, le guide d'installation, et les informations de contact pour l'assistance. Il est de votre responsabilité de fournir une adresse e-mail valide.
           </p>
@@ -59,14 +59,21 @@ export default function TermsOfServicePage() {
         <section>
           <h2 className="text-2xl font-bold text-foreground mb-4 font-headline">7. Limitation de Responsabilité</h2>
           <p>
-            RicStreaming fournit un accès à des flux de streaming. Nous ne sommes pas responsables de la qualité, de la disponibilité ou de la légalité des flux eux-mêmes. Le service est fourni "tel quel", sans garantie d'aucune sorte.
+            RicStreaming by RIC SERVICES fournit un accès à des flux de streaming. Nous ne sommes pas responsables de la qualité, de la disponibilité ou de la légalité des flux eux-mêmes. Le service est fourni "tel quel", sans garantie d'aucune sorte.
+          </p>
+        </section>
+        
+        <section>
+          <h2 className="text-2xl font-bold text-foreground mb-4 font-headline">8. Contact</h2>
+          <p>
+            Pour toute question concernant ces conditions, veuillez nous contacter à <a href="mailto:support@ricstreaming.com" className="text-primary hover:underline">support@ricstreaming.com</a>.
           </p>
         </section>
 
         <section>
-          <h2 className="text-2xl font-bold text-foreground mb-4 font-headline">8. Modifications des Conditions</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-4 font-headline">9. Modifications des Conditions</h2>
           <p>
-            Nous nous réservons le droit de modifier ces conditions à tout moment. Les modifications seront effectives dès leur publication sur cette page.
+            RIC SERVICES se réserve le droit de modifier ces conditions à tout moment. Les modifications seront effectives dès leur publication sur cette page.
           </p>
         </section>
       </div>

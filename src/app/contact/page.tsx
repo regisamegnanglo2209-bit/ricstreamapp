@@ -86,7 +86,7 @@ export default function ContactPage() {
         </Card>
 
         <div className="space-y-6">
-          <h2 className="text-2xl font-bold font-headline">Support Direct</h2>
+          <h2 className="text-2xl font-bold font-headline">Support Direct (RIC SERVICES)</h2>
           <p className="text-muted-foreground">
             Pour une assistance immédiate, veuillez utiliser l'une des options ci-dessous.
           </p>
@@ -100,7 +100,7 @@ export default function ContactPage() {
             <Button asChild variant="outline" className="w-full justify-start text-lg p-6">
               <Link href="https://wa.me/22901924287" target="_blank" rel="noopener noreferrer">
                 <Phone className="mr-4 h-6 w-6 text-primary" />
-                Contacter sur WhatsApp
+                (+229) 01 92 42 87
               </Link>
             </Button>
           </div>
