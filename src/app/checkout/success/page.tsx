@@ -30,7 +30,7 @@ function SuccessContent() {
             <p className="text-sm text-muted-foreground">
               Votre agent sera là pour fournir le fichier, répondre à vos questions et s’assurer que tout fonctionne parfaitement.
             </p>
-             <Button asChild size="lg">
+             <Button asChild size="lg" className="bg-green-600 hover:bg-green-700 text-white">
                 <Link href="https://wa.me/message/7SW4CJ5TBPHMI1" target="_blank" rel="noopener noreferrer">
                     <MessageCircle className="mr-2 h-5 w-5" />
                     Contacter un agent sur WhatsApp
