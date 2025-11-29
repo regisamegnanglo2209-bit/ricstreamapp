@@ -1,6 +1,7 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
 import { processCheckoutAction } from '@/lib/actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -28,7 +29,7 @@ function SubmitButton() {
 }
 
 export default function CheckoutPage() {
-  const [state, formAction] = useFormState(processCheckoutAction, initialState);
+  const [state, formAction] = useActionState(processCheckoutAction, initialState);
   const { toast } = useToast();
 
   useEffect(() => {

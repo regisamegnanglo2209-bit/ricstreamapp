@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useState, useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { getRecommendationsAction } from '@/lib/actions';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -25,7 +25,7 @@ function SubmitButton({ children }: { children: React.ReactNode }) {
 }
 
 export default function AiAssistant() {
-  const [state, formAction] = useFormState(getRecommendationsAction, initialState);
+  const [state, formAction] = useActionState(getRecommendationsAction, initialState);
   const [key, setKey] = useState(0);
 
   const handleTrendingClick = () => {
