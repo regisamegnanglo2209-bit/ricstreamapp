@@ -49,20 +49,20 @@ export default function Home() {
         <div className="container relative z-20 px-4 md:px-6">
           <div className="flex flex-col items-center space-y-6">
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl font-headline text-primary animate-fade-in-down">
-              Le Match Est Lancé. Et Vous?
+              FINIS LES ABONNEMENTS MENSUELS !
             </h1>
             <p className="max-w-[700px] text-lg text-gray-200 md:text-xl">
-              Débloquez un accès instantané à des milliers de chaînes sportives en direct. Ne manquez plus un seul moment de l'action.
+              Regardez le sport en direct à vie. Ne manquez plus un seul moment de l'action.
             </p>
             <div className="flex flex-col items-center space-y-4">
               <p className="text-accent font-semibold text-lg">Offre à durée limitée se terminant dans :</p>
               <CountdownTimer targetDate={offerEndDate.toISOString()} />
               <div className="text-2xl text-white my-4">
-                Accès à vie pour seulement <span className="font-bold text-accent text-3xl">19,99€</span> <del className="text-muted-foreground text-xl">99,99€</del>
+                Accès à vie pour seulement <span className="font-bold text-accent text-3xl">3 900 FCFA</span> <del className="text-muted-foreground text-xl">20 000 FCFA</del>
               </div>
               <Button asChild size="lg" className="group bg-primary hover:bg-primary/90 text-primary-foreground text-lg">
                 <Link href="/checkout">
-                  Obtenez un accès instantané
+                  Obtenir le PACKRICSTREAMING maintenant
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
