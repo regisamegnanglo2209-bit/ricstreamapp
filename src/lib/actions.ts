@@ -63,7 +63,7 @@ export async function submitContactFormAction(prevState: any, formData: FormData
 }
 
 
-// Checkout Form Action
+// Checkout Form Action (Simplified)
 const checkoutSchema = z.object({
     name: z.string().min(2, { message: "Le nom doit comporter au moins 2 caractères." }),
     email: z.string().email({ message: "Veuillez saisir une adresse Gmail valide." }).refine(email => email.endsWith('@gmail.com'), { message: "Seules les adresses Gmail sont acceptées." }),
@@ -91,70 +91,8 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
         };
     }
     
-    const { name, email, phone } = validatedFields.data;
     const orderNumber = `RS-${Date.now()}`;
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
-    const moneyFusionApiUrl = process.env.MONEYFUSION_API_URL;
-
-    if (!moneyFusionApiUrl) {
-        console.error("L'URL de l'API MoneyFusion n'est pas définie dans les variables d'environnement.");
-        return {
-            errors: {},
-            message: 'Le service de paiement est actuellement indisponible. Configuration manquante.',
-            success: false,
-        };
-    }
-
-    const paymentPayload = {
-      totalPrice: 3900,
-      article: [{ "PACKRICSTREAMING": 3900 }],
-      personal_Info: [{
-        orderId: orderNumber,
-        email: email,
-      }],
-      numeroSend: phone,
-      nomclient: name,
-      return_url: `${appUrl}/checkout/success?order=${orderNumber}`,
-      webhook_url: `${appUrl}/api/payment/webhook`,
-    };
-
-    try {
-        const response = await fetch(moneyFusionApiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(paymentPayload)
-        });
-
-        if (!response.ok) {
-            const errorText = await response.text();
-            console.error("Erreur de l'API MoneyFusion (response not ok):", errorText);
-            return {
-                errors: {},
-                message: `Le service de paiement a retourné une erreur: ${response.statusText}`,
-                success: false,
-            };
-        }
-
-        const paymentData = await response.json();
-        
-        if (paymentData.statut === true && paymentData.url) {
-            redirect(paymentData.url);
-        } else {
-             return {
-                errors: {},
-                message: `Erreur lors de l'initialisation du paiement: ${paymentData.message || 'Veuillez réessayer.'}`,
-                success: false,
-            };
-        }
-
-    } catch (error) {
-        console.error("Erreur de l'API MoneyFusion (catch):", error);
-        return {
-            errors: {},
-            message: 'Le service de paiement est actuellement indisponible.',
-            success: false,
-        };
-    }
+    
+    // Redirect directly to success page for now
+    redirect(`/checkout/success?order=${orderNumber}`);
 }
