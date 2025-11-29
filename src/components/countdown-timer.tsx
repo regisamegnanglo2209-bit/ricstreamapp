@@ -6,7 +6,7 @@ type CountdownTimerProps = {
   targetDate: string;
 };
 
-type TimeUnit = 'Days' | 'Hours' | 'Minutes' | 'Seconds';
+type TimeUnit = 'Jours' | 'Heures' | 'Minutes' | 'Secondes';
 
 const TimeBox = ({ value, unit }: { value: number; unit: TimeUnit }) => (
   <div className="flex flex-col items-center justify-center bg-primary/20 backdrop-blur-sm rounded-lg p-3 md:p-4 w-20 md:w-24 border border-primary/50">
@@ -59,20 +59,20 @@ export default function CountdownTimer({ targetDate }: CountdownTimerProps) {
   if (!isClient) {
     return (
         <div className="flex space-x-2 md:space-x-4 animate-pulse">
-            <TimeBox value={0} unit="Days" />
-            <TimeBox value={0} unit="Hours" />
+            <TimeBox value={0} unit="Jours" />
+            <TimeBox value={0} unit="Heures" />
             <TimeBox value={0} unit="Minutes" />
-            <TimeBox value={0} unit="Seconds" />
+            <TimeBox value={0} unit="Secondes" />
         </div>
     );
   }
 
   return (
     <div className="flex space-x-2 md:space-x-4">
-      <TimeBox value={timeLeft.days} unit="Days" />
-      <TimeBox value={timeLeft.hours} unit="Hours" />
+      <TimeBox value={timeLeft.days} unit="Jours" />
+      <TimeBox value={timeLeft.hours} unit="Heures" />
       <TimeBox value={timeLeft.minutes} unit="Minutes" />
-      <TimeBox value={timeLeft.seconds} unit="Seconds" />
+      <TimeBox value={timeLeft.seconds} unit="Secondes" />
     </div>
   );
 }

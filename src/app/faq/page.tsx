@@ -8,29 +8,29 @@ import { HelpCircle } from 'lucide-react';
 
 const faqs = [
   {
-    question: 'How do I install the RicStreaming app?',
+    question: 'Comment installer l\'application RicStreaming ?',
     answer:
-      'After purchase, you will receive an email with a download link for the APK file and a step-by-step installation guide. Simply download the file, allow installation from unknown sources on your Android device, and run the installer.',
+      'Après l\'achat, vous recevrez un e-mail avec un lien de téléchargement pour le fichier APK et un guide d\'installation étape par étape. Téléchargez simplement le fichier, autorisez l\'installation à partir de sources inconnues sur votre appareil Android et exécutez l\'installateur.',
   },
   {
-    question: 'What sports and channels are available?',
+    question: 'Quels sports et chaînes sont disponibles ?',
     answer:
-      'RicStreaming offers a vast collection of sports channels from around the world, covering football, basketball, cricket, tennis, motorsports, and much more. For a specific channel request, please contact our support team.',
+      'RicStreaming propose une vaste collection de chaînes sportives du monde entier, couvrant le football, le basket-ball, le cricket, le tennis, les sports mécaniques et bien plus encore. Pour une demande de chaîne spécifique, veuillez contacter notre équipe de support.',
   },
   {
-    question: 'What if I encounter streaming issues?',
+    question: 'Que faire si je rencontre des problèmes de streaming ?',
     answer:
-      'Most streaming issues can be resolved by checking your internet connection, clearing the app cache, or restarting the app. Our installation guide also includes a troubleshooting section. If the problem persists, our support team is available 24/7 to assist you.',
+      'La plupart des problèmes de streaming peuvent être résolus en vérifiant votre connexion Internet, en vidant le cache de l\'application ou en redémarrant l\'application. Notre guide d\'installation comprend également une section de dépannage. Si le problème persiste, notre équipe de support est disponible 24h/24 et 7j/7 pour vous aider.',
   },
   {
-    question: 'What is your refund policy?',
+    question: 'Quelle est votre politique de remboursement ?',
     answer:
-      'We offer a 7-day money-back guarantee. If you are not satisfied with our service for any reason within the first 7 days of your purchase, you can request a full refund, no questions asked.',
+      'Nous offrons une garantie de remboursement de 7 jours. Si vous n\'êtes pas satisfait de notre service pour une raison quelconque dans les 7 premiers jours de votre achat, vous pouvez demander un remboursement complet, sans poser de questions.',
   },
     {
-    question: 'Can I use RicStreaming on multiple devices?',
+    question: 'Puis-je utiliser RicStreaming sur plusieurs appareils ?',
     answer:
-      'Your subscription allows you to use RicStreaming on one device at a time. However, you can install the app on multiple devices and log in as needed.',
+      'Votre abonnement vous permet d\'utiliser RicStreaming sur un appareil à la fois. Cependant, vous pouvez installer l\'application sur plusieurs appareils et vous connecter au besoin.',
   },
 ];
 
@@ -40,10 +40,10 @@ export default function FaqPage() {
       <div className="text-center mb-12">
         <HelpCircle className="mx-auto h-12 w-12 text-primary mb-4" />
         <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl font-headline">
-          Frequently Asked Questions
+          Foire Aux Questions
         </h1>
         <p className="mt-4 text-muted-foreground md:text-xl">
-          Find answers to common questions about RicStreaming.
+          Trouvez des réponses aux questions courantes sur RicStreaming.
         </p>
       </div>
 

@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 import Logo from './logo';
 
 const navLinks = [
-  { href: '/', label: 'Home' },
+  { href: '/', label: 'Accueil' },
   { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contact' },
 ];
@@ -44,7 +44,7 @@ export function Header() {
         <div className="hidden md:flex items-center space-x-6">
           <NavLinks />
           <Button asChild>
-            <Link href="/checkout">Get Access</Link>
+            <Link href="/checkout">Obtenir l'accès</Link>
           </Button>
         </div>
 
@@ -53,7 +53,7 @@ export function Header() {
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
                 <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle navigation menu</span>
+                <span className="sr-only">Ouvrir le menu de navigation</span>
               </Button>
             </SheetTrigger>
             <SheetContent side="right">
@@ -63,7 +63,7 @@ export function Header() {
                 </Link>
                 <NavLinks className="flex-col !items-start !space-x-0 space-y-4" />
                 <Button asChild className="w-full">
-                  <Link href="/checkout">Get Access</Link>
+                  <Link href="/checkout">Obtenir l'accès</Link>
                 </Button>
               </div>
             </SheetContent>

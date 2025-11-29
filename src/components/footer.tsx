@@ -10,15 +10,15 @@ export function Footer() {
             <Logo />
           </Link>
           <nav className="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm font-medium">
-            <Link href="/" className="transition-colors hover:text-primary">Home</Link>
+            <Link href="/" className="transition-colors hover:text-primary">Accueil</Link>
             <Link href="/faq" className="transition-colors hover:text-primary">FAQ</Link>
             <Link href="/contact" className="transition-colors hover:text-primary">Contact</Link>
-            <Link href="/#" className="transition-colors hover:text-primary">Terms of Service</Link>
-            <Link href="/#" className="transition-colors hover:text-primary">Privacy Policy</Link>
+            <Link href="/#" className="transition-colors hover:text-primary">Conditions de Service</Link>
+            <Link href="/#" className="transition-colors hover:text-primary">Politique de Confidentialité</Link>
           </nav>
         </div>
         <div className="text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} RicStreaming. All rights reserved.
+          © {new Date().getFullYear()} RicStreaming. Tous droits réservés.
         </div>
       </div>
     </footer>

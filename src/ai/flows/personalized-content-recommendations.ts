@@ -15,11 +15,11 @@ const PersonalizedRecommendationsInputSchema = z.object({
   userPreferences: z
     .string()
     .optional()
-    .describe('The user\u0027s preferred sports or content genres.'),
+    .describe('Les sports ou genres de contenu préférés de l\'utilisateur.'),
   trendingEvents: z
     .string()
     .optional()
-    .describe('Trending sports events or content.'),
+    .describe('Événements sportifs ou contenus tendances.'),
 });
 
 export type PersonalizedRecommendationsInput = z.infer<typeof PersonalizedRecommendationsInputSchema>;
@@ -27,7 +27,7 @@ export type PersonalizedRecommendationsInput = z.infer<typeof PersonalizedRecomm
 const PersonalizedRecommendationsOutputSchema = z.object({
   recommendations: z
     .array(z.string())
-    .describe('A list of personalized content recommendations.'),
+    .describe('Une liste de recommandations de contenu personnalisées.'),
 });
 
 export type PersonalizedRecommendationsOutput = z.infer<typeof PersonalizedRecommendationsOutputSchema>;
@@ -42,13 +42,14 @@ const personalizedContentRecommendationsPrompt = ai.definePrompt({
   name: 'personalizedContentRecommendationsPrompt',
   input: {schema: PersonalizedRecommendationsInputSchema},
   output: {schema: PersonalizedRecommendationsOutputSchema},
-  prompt: `You are an AI assistant that provides personalized content recommendations based on user preferences and trending events.
+  prompt: `Vous êtes un assistant IA qui fournit des recommandations de contenu personnalisées en fonction des préférences de l'utilisateur et des événements tendances.
+La réponse doit être en français.
 
-  User Preferences: {{userPreferences}}
-  Trending Events: {{trendingEvents}}
+  Préférences de l'utilisateur : {{userPreferences}}
+  Événements tendances : {{trendingEvents}}
 
-  Provide a list of 3-5 content recommendations tailored to the user.
-  Format the recommendations as a list of strings.
+  Fournissez une liste de 3 à 5 recommandations de contenu adaptées à l'utilisateur.
+  Formatez les recommandations comme une liste de chaînes de caractères.
   `,
 });
 

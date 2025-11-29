@@ -23,7 +23,7 @@ function SubmitButton() {
   return (
     <Button type="submit" className="w-full" disabled={pending}>
       {pending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-      Send Message
+      Envoyer le message
     </Button>
   );
 }
@@ -36,7 +36,7 @@ export default function ContactPage() {
   useEffect(() => {
     if (state.message) {
       toast({
-        title: state.success ? 'Success!' : 'Error',
+        title: state.success ? 'Succès !' : 'Erreur',
         description: state.message,
         variant: state.success ? 'default' : 'destructive',
       });
@@ -51,33 +51,33 @@ export default function ContactPage() {
       <div className="text-center mb-12">
         <Mail className="mx-auto h-12 w-12 text-primary mb-4" />
         <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl font-headline">
-          Get in Touch
+          Contactez-nous
         </h1>
         <p className="mt-4 text-muted-foreground md:text-xl">
-          We're here to help. Contact us with any questions or issues.
+          Nous sommes là pour vous aider. Contactez-nous pour toute question ou problème.
         </p>
       </div>
       <div className="grid md:grid-cols-2 gap-12 items-start">
         <Card>
           <CardHeader>
-            <CardTitle>Send us a Message</CardTitle>
-            <CardDescription>Our team will get back to you within 24 hours.</CardDescription>
+            <CardTitle>Envoyez-nous un message</CardTitle>
+            <CardDescription>Notre équipe vous répondra dans les 24 heures.</CardDescription>
           </CardHeader>
           <CardContent>
             <form ref={formRef} action={formAction} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" name="name" placeholder="Your Name" />
+                <Label htmlFor="name">Nom</Label>
+                <Input id="name" name="name" placeholder="Votre Nom" />
                 {state.errors?.name && <p className="text-sm text-red-500 flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {state.errors.name[0]}</p>}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" placeholder="your.email@example.com" />
+                <Label htmlFor="email">E-mail</Label>
+                <Input id="email" name="email" type="email" placeholder="votre.email@exemple.com" />
                 {state.errors?.email && <p className="text-sm text-red-500 flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {state.errors.email[0]}</p>}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="message">Message</Label>
-                <Textarea id="message" name="message" placeholder="How can we help you?" />
+                <Textarea id="message" name="message" placeholder="Comment pouvons-nous vous aider ?" />
                 {state.errors?.message && <p className="text-sm text-red-500 flex items-center gap-1"><AlertCircle className="h-4 w-4" /> {state.errors.message[0]}</p>}
               </div>
               <SubmitButton />
@@ -86,21 +86,21 @@ export default function ContactPage() {
         </Card>
 
         <div className="space-y-6">
-          <h2 className="text-2xl font-bold font-headline">Direct Support</h2>
+          <h2 className="text-2xl font-bold font-headline">Support Direct</h2>
           <p className="text-muted-foreground">
-            For immediate assistance, please use one of the options below.
+            Pour une assistance immédiate, veuillez utiliser l'une des options ci-dessous.
           </p>
           <div className="space-y-4">
             <Button asChild variant="outline" className="w-full justify-start text-lg p-6">
               <Link href="#" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="mr-4 h-6 w-6 text-primary" />
-                Live Chat
+                Chat en direct
               </Link>
             </Button>
             <Button asChild variant="outline" className="w-full justify-start text-lg p-6">
               <Link href="#" target="_blank" rel="noopener noreferrer">
                 <Phone className="mr-4 h-6 w-6 text-primary" />
-                Contact on WhatsApp
+                Contacter sur WhatsApp
               </Link>
             </Button>
           </div>

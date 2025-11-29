@@ -24,16 +24,16 @@ export async function getRecommendationsAction(
     console.error(error);
     return {
       recommendations: [],
-      error: 'Sorry, we couldn\'t get recommendations at this time. Please try again later.',
+      error: 'Désolé, nous n\'avons pas pu obtenir de recommandations pour le moment. Veuillez réessayer plus tard.',
     };
   }
 }
 
 // Contact Form Action
 const contactSchema = z.object({
-  name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
-  email: z.string().email({ message: 'Please enter a valid email address.' }),
-  message: z.string().min(10, { message: 'Message must be at least 10 characters.' }),
+  name: z.string().min(2, { message: 'Le nom doit comporter au moins 2 caractères.' }),
+  email: z.string().email({ message: 'Veuillez saisir une adresse e-mail valide.' }),
+  message: z.string().min(10, { message: 'Le message doit comporter au moins 10 caractères.' }),
 });
 
 export async function submitContactFormAction(prevState: any, formData: FormData) {
@@ -46,7 +46,7 @@ export async function submitContactFormAction(prevState: any, formData: FormData
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
-      message: 'Please correct the errors and try again.',
+      message: 'Veuillez corriger les erreurs et réessayer.',
       success: false,
     };
   }
@@ -56,7 +56,7 @@ export async function submitContactFormAction(prevState: any, formData: FormData
 
   return {
     errors: {},
-    message: 'Thank you for your message! We will get back to you shortly.',
+    message: 'Merci pour votre message ! Nous vous répondrons sous peu.',
     success: true,
   };
 }
@@ -64,9 +64,9 @@ export async function submitContactFormAction(prevState: any, formData: FormData
 
 // Checkout Form Action
 const checkoutSchema = z.object({
-    name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-    email: z.string().email({ message: "Please enter a valid Gmail address." }).refine(email => email.endsWith('@gmail.com'), { message: "Only Gmail addresses are accepted." }),
-    phone: z.string().min(10, { message: "Please enter a valid phone number." }),
+    name: z.string().min(2, { message: "Le nom doit comporter au moins 2 caractères." }),
+    email: z.string().email({ message: "Veuillez saisir une adresse Gmail valide." }).refine(email => email.endsWith('@gmail.com'), { message: "Seules les adresses Gmail sont acceptées." }),
+    phone: z.string().min(10, { message: "Veuillez saisir un numéro de téléphone valide." }),
 });
 
 export async function processCheckoutAction(prevState: any, formData: FormData) {
@@ -79,7 +79,7 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
     if (!validatedFields.success) {
         return {
             errors: validatedFields.error.flatten().fieldErrors,
-            message: "Please correct the errors below.",
+            message: "Veuillez corriger les erreurs ci-dessous.",
             success: false,
         };
     }
@@ -94,7 +94,7 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
 
     return {
         errors: {},
-        message: "Your purchase was successful!",
+        message: "Votre achat a été effectué avec succès !",
         success: true,
     };
 }

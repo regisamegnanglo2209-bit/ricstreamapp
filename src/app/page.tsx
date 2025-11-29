@@ -12,18 +12,18 @@ const heroImage = placeholderImages.find(p => p.id === 'hero-stadium');
 const benefits = [
   {
     icon: <Tv className="h-10 w-10 text-primary" />,
-    title: 'All Sports, One Place',
-    description: 'From local leagues to international championships, get access to every game you love.',
+    title: 'Tous les sports, un seul endroit',
+    description: 'Des ligues locales aux championnats internationaux, accédez à tous les matchs que vous aimez.',
   },
   {
     icon: <Smartphone className="h-10 w-10 text-primary" />,
-    title: 'Stream Anywhere',
-    description: 'Enjoy seamless streaming on your phone, tablet, or smart TV with our dedicated app.',
+    title: 'Streamez n\'importe où',
+    description: 'Profitez d\'un streaming fluide sur votre téléphone, tablette ou smart TV avec notre application dédiée.',
   },
   {
     icon: <ShieldCheck className="h-10 w-10 text-primary" />,
-    title: 'Secure & Reliable',
-    description: 'Our service is backed by secure payment gateways and reliable streaming technology.',
+    title: 'Sécurisé & Fiable',
+    description: 'Notre service est soutenu par des passerelles de paiement sécurisées et une technologie de streaming fiable.',
   },
 ];
 
@@ -38,7 +38,7 @@ export default function Home() {
         {heroImage && (
           <Image
             src={heroImage.imageUrl}
-            alt={heroImage.description}
+            alt="Un stade de sport vibrant et énergique la nuit, rempli de fans en liesse et de lumières vives, transmettant l'excitation."
             data-ai-hint={heroImage.imageHint}
             fill
             className="object-cover z-0"
@@ -49,21 +49,21 @@ export default function Home() {
         <div className="container relative z-20 px-4 md:px-6">
           <div className="flex flex-col items-center space-y-6">
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl font-headline text-primary animate-fade-in-down">
-              The Game Is On. Are You?
+              Le Match Est Lancé. Et Vous?
             </h1>
             <p className="max-w-[700px] text-lg text-gray-200 md:text-xl">
-              Unlock instant access to thousands of live sports channels. Don't miss another moment of the action.
+              Débloquez un accès instantané à des milliers de chaînes sportives en direct. Ne manquez plus un seul moment de l'action.
             </p>
             <div className="flex flex-col items-center space-y-4">
-              <p className="text-accent font-semibold text-lg">Limited Time Offer Ends In:</p>
+              <p className="text-accent font-semibold text-lg">Offre à durée limitée se terminant dans :</p>
               <CountdownTimer targetDate={offerEndDate.toISOString()} />
               <Button asChild size="lg" className="group bg-primary hover:bg-yellow-400 text-primary-foreground text-lg">
                 <Link href="/checkout">
-                  Get Instant Access
+                  Obtenez un accès instantané
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
-              <p className="text-sm text-gray-400">Secure payment via MoneyFusion.</p>
+              <p className="text-sm text-gray-400">Paiement sécurisé via MoneyFusion.</p>
             </div>
           </div>
         </div>
@@ -97,14 +97,14 @@ export default function Home() {
       <section className="w-full py-12 md:py-24 bg-background">
         <div className="container flex flex-col items-center gap-4 px-4 text-center md:px-6">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline text-primary">
-            Ready to Join the Action?
+            Prêt à rejoindre l'action?
           </h2>
           <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-            Your front-row seat to the world of sports is just a click away. Get lifetime access now before the timer runs out!
+            Votre place au premier rang du monde du sport n'est qu'à un clic. Obtenez un accès à vie maintenant avant la fin du temps imparti!
           </p>
           <Button asChild size="lg" className="group bg-primary hover:bg-yellow-400 text-primary-foreground text-lg mt-4">
             <Link href="/checkout">
-              I'm Ready!
+              Je suis prêt !
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>

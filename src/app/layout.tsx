@@ -5,8 +5,8 @@ import { Footer } from '@/components/footer';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'RicStreaming - Premium Sports Streaming',
-  description: 'Your one-stop solution for all live sports action.',
+  title: 'RicStreaming - Streaming Sportif Premium',
+  description: 'Votre solution unique pour toute l\'action sportive en direct.',
 };
 
 export default function RootLayout({
@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="fr" className="dark">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

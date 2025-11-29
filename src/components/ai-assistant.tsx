@@ -42,27 +42,27 @@ export default function AiAssistant() {
     <div key={key} className="w-full max-w-2xl mx-auto text-center">
       <Sparkles className="h-12 w-12 text-primary mx-auto mb-4" />
       <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">
-        What to Watch Next?
+        Quoi regarder ensuite ?
       </h2>
       <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mt-4 mb-8">
-        Let our AI assistant help you find the perfect game. Tell us your favorite sport or get recommendations based on what's currently trending.
+        Laissez notre assistant IA vous aider à trouver le match parfait. Dites-nous votre sport préféré ou obtenez des recommandations basées sur les tendances actuelles.
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
         <form action={formAction} className="flex gap-2 w-full sm:w-auto">
-          <Input name="preference" type="text" placeholder="e.g., Premier League, NBA" className="min-w-[200px] sm:min-w-[300px]" required />
-          <SubmitButton>Get Recs</SubmitButton>
+          <Input name="preference" type="text" placeholder="ex: Ligue 1, NBA" className="min-w-[200px] sm:min-w-[300px]" required />
+          <SubmitButton>Obtenir Recos</SubmitButton>
         </form>
-        <span className="text-muted-foreground">or</span>
+        <span className="text-muted-foreground">ou</span>
         <Button onClick={handleTrendingClick} variant="outline">
           <Zap className="mr-2 h-4 w-4" />
-          Trending Now
+          Tendances
         </Button>
       </div>
 
       {state?.error && (
         <Alert variant="destructive" className="mt-4 text-left">
-          <AlertTitle>Error</AlertTitle>
+          <AlertTitle>Erreur</AlertTitle>
           <AlertDescription>{state.error}</AlertDescription>
         </Alert>
       )}
@@ -72,10 +72,10 @@ export default function AiAssistant() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <List className="h-6 w-6 text-primary" />
-              Your Personalized Recommendations
+              Vos recommandations personnalisées
             </CardTitle>
             <CardDescription>
-              Based on your request, here are some events you won't want to miss.
+              En fonction de votre demande, voici quelques événements que vous ne voudrez pas manquer.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -88,7 +88,7 @@ export default function AiAssistant() {
               ))}
             </ul>
             <Button variant="link" onClick={resetForm} className="mt-4">
-              Get new recommendations
+              Obtenir de nouvelles recommandations
             </Button>
           </CardContent>
         </Card>

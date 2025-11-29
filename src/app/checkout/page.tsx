@@ -22,7 +22,7 @@ function SubmitButton() {
   return (
     <Button type="submit" className="w-full" size="lg" disabled={pending}>
       {pending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-      Pay & Get Instant Access
+      Payer & Obtenir l'Accès Instantané
     </Button>
   );
 }
@@ -35,7 +35,7 @@ export default function CheckoutPage() {
     if (state.message && !state.success) {
       toast({
         variant: 'destructive',
-        title: 'Error',
+        title: 'Erreur',
         description: state.message,
       });
     }
@@ -47,34 +47,34 @@ export default function CheckoutPage() {
         <Card className="animate-fade-in-up border-2 border-primary shadow-lg shadow-primary/20">
           <CardHeader className="text-center">
             <CheckCircle className="mx-auto h-16 w-16 text-green-500 mb-4" />
-            <CardTitle className="text-3xl font-bold text-primary">Purchase Complete!</CardTitle>
+            <CardTitle className="text-3xl font-bold text-primary">Achat Terminé !</CardTitle>
             <CardDescription className="text-lg">
-              Welcome to RicStreaming! Your access is ready.
+              Bienvenue chez RicStreaming ! Votre accès est prêt.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <p className="text-center text-muted-foreground">
-              A confirmation email has been sent to you with everything you need to get started.
+              Un e-mail de confirmation vous a été envoyé avec tout ce dont vous avez besoin pour commencer.
             </p>
             <div className="space-y-4 rounded-lg border p-4">
-              <h3 className="font-semibold text-lg text-center">Next Steps:</h3>
+              <h3 className="font-semibold text-lg text-center">Prochaines Étapes :</h3>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3">
                   <Download className="h-5 w-5 text-primary" />
-                  <span>Download the APK from the link in your email.</span>
+                  <span>Téléchargez l'APK depuis le lien dans votre e-mail.</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <BookOpen className="h-5 w-5 text-primary" />
-                  <span>Follow our simple installation guide.</span>
+                  <span>Suivez notre guide d'installation simple.</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone className="h-5 w-5 text-primary" />
-                  <span>Contact our support team if you need any help.</span>
+                  <span>Contactez notre support si vous avez besoin d'aide.</span>
                 </li>
               </ul>
             </div>
             <Button asChild className="w-full" variant="outline">
-                <Link href="/">Back to Home</Link>
+                <Link href="/">Retour à l'accueil</Link>
             </Button>
           </CardContent>
         </Card>
@@ -86,31 +86,31 @@ export default function CheckoutPage() {
     <div className="container mx-auto max-w-md py-12 px-4 md:px-6">
       <Card>
         <CardHeader>
-          <CardTitle className="text-3xl font-bold text-center font-headline">Complete Your Purchase</CardTitle>
+          <CardTitle className="text-3xl font-bold text-center font-headline">Finalisez Votre Achat</CardTitle>
           <CardDescription className="text-center">
-            Fill in your details to unlock lifetime access to RicStreaming.
+            Remplissez vos informations pour débloquer un accès à vie à RicStreaming.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form action={formAction} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="name">Full Name</Label>
+              <Label htmlFor="name">Nom Complet</Label>
               <Input id="name" name="name" placeholder="John Doe" required />
               {state.errors?.name && <p className="text-sm text-red-500 flex items-center gap-1"><AlertCircle className="h-4 w-4"/> {state.errors.name[0]}</p>}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Gmail Address</Label>
-              <Input id="email" name="email" type="email" placeholder="you@gmail.com" required />
+              <Label htmlFor="email">Adresse Gmail</Label>
+              <Input id="email" name="email" type="email" placeholder="vous@gmail.com" required />
               {state.errors?.email && <p className="text-sm text-red-500 flex items-center gap-1"><AlertCircle className="h-4 w-4"/> {state.errors.email[0]}</p>}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="phone">Phone Number</Label>
+              <Label htmlFor="phone">Numéro de Téléphone</Label>
               <Input id="phone" name="phone" type="tel" placeholder="+1234567890" required />
               {state.errors?.phone && <p className="text-sm text-red-500 flex items-center gap-1"><AlertCircle className="h-4 w-4"/> {state.errors.phone[0]}</p>}
             </div>
             <SubmitButton />
             <p className="text-xs text-center text-muted-foreground">
-              Secure payment processing by MoneyFusion. By clicking, you agree to our Terms of Service.
+              Traitement de paiement sécurisé par MoneyFusion. En cliquant, vous acceptez nos Conditions de Service.
             </p>
           </form>
         </CardContent>
