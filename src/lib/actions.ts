@@ -66,31 +66,53 @@ export async function submitContactFormAction(prevState: any, formData: FormData
 const checkoutSchema = z.object({
     name: z.string().min(2, { message: "Le nom doit comporter au moins 2 caractères." }),
     email: z.string().email({ message: "Veuillez saisir une adresse Gmail valide." }).refine(email => email.endsWith('@gmail.com'), { message: "Seules les adresses Gmail sont acceptées." }),
-    phone: z.string().min(10, { message: "Veuillez saisir un numéro de téléphone valide." }),
+    phone: z.string().min(7, { message: "Veuillez saisir un numéro de téléphone valide." }),
 });
 
 export async function processCheckoutAction(prevState: any, formData: FormData) {
+    const phone_prefix = formData.get('phone_prefix');
+    const phone_number = formData.get('phone_number');
+    
+    const fullPhoneNumber = `${phone_prefix}${phone_number}`;
+
     const validatedFields = checkoutSchema.safeParse({
         name: formData.get('name'),
         email: formData.get('email'),
-        phone: formData.get('phone'),
+        phone: fullPhoneNumber,
     });
-
+    
     if (!validatedFields.success) {
+        // We need to flatten the errors to get a specific error for the combined phone field
+        const fieldErrors = validatedFields.error.flatten().fieldErrors;
+        if(fieldErrors.phone) {
+            // Assign phone error to phone_number field to display it correctly
+            return {
+                errors: { ...fieldErrors, phone: fieldErrors.phone },
+                message: "Veuillez corriger les erreurs ci-dessous.",
+                success: false,
+            };
+        }
+
         return {
-            errors: validatedFields.error.flatten().fieldErrors,
+            errors: fieldErrors,
             message: "Veuillez corriger les erreurs ci-dessous.",
             success: false,
         };
     }
     
+    const finalData = {
+        name: validatedFields.data.name,
+        email: validatedFields.data.email,
+        phone: validatedFields.data.phone
+    };
+
     // Here you would integrate with MoneyFusion payment gateway
     // and trigger the email delivery on success.
     // We'll simulate a successful transaction.
-    console.log("Processing payment for:", validatedFields.data);
+    console.log("Processing payment for:", finalData);
     
     // Simulate email sending
-    console.log(`Sending APK, guide, and contact details to ${validatedFields.data.email}`);
+    console.log(`Sending APK, guide, and contact details to ${finalData.email}`);
 
     return {
         errors: {},

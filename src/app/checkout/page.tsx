@@ -11,12 +11,25 @@ import { useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { CheckCircle, Download, BookOpen, Phone, Loader2, AlertCircle, Tag } from 'lucide-react';
 import Link from 'next/link';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const initialState = {
   errors: {},
   message: '',
   success: false,
 };
+
+const uemoaCountries = [
+  { code: '+229', name: 'Bénin', flag: '🇧🇯' },
+  { code: '+226', name: 'Burkina Faso', flag: '🇧🇫' },
+  { code: '+225', name: 'Côte d\'Ivoire', flag: '🇨🇮' },
+  { code: '+245', name: 'Guinée-Bissau', flag: '🇬🇼' },
+  { code: '+223', name: 'Mali', flag: '🇲🇱' },
+  { code: '+227', name: 'Niger', flag: '🇳🇪' },
+  { code: '+221', name: 'Sénégal', flag: '🇸🇳' },
+  { code: '+228', name: 'Togo', flag: '🇹🇬' },
+];
+
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -116,8 +129,22 @@ export default function CheckoutPage() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="phone">Numéro de Téléphone</Label>
-              <Input id="phone" name="phone" type="tel" placeholder="+1234567890" required />
-              {state.errors?.phone && <p className="text-sm text-red-500 flex items-center gap-1"><AlertCircle className="h-4 w-4"/> {state.errors.phone[0]}</p>}
+              <div className="flex gap-2">
+                 <Select name="phone_prefix" defaultValue="+221">
+                    <SelectTrigger className="w-[140px]">
+                      <SelectValue placeholder="Prefix" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {uemoaCountries.map(country => (
+                        <SelectItem key={country.code} value={country.code}>
+                          {country.flag} {country.code}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                <Input id="phone" name="phone_number" type="tel" placeholder="77 123 45 67" required className="flex-1" />
+              </div>
+              {state.errors?.phone && <p className="text-sm text-red-500 flex items-center gap-1 mt-2"><AlertCircle className="h-4 w-4"/> {state.errors.phone[0]}</p>}
             </div>
             <SubmitButton />
             <p className="text-xs text-center text-muted-foreground">
