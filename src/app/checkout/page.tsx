@@ -16,6 +16,7 @@ const initialState = {
   errors: {},
   message: '',
   success: false,
+  url: null,
 };
 
 const uemoaCountries = [
@@ -45,7 +46,9 @@ export default function CheckoutPage() {
   const { toast } = useToast();
 
   useEffect(() => {
-    if (state.message && !state.success) {
+    if (state?.success && state?.url) {
+      window.location.href = state.url;
+    } else if (state?.message && !state?.success) {
       toast({
         variant: 'destructive',
         title: 'Erreur',

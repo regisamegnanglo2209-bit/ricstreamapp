@@ -89,6 +89,7 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
             errors: fieldErrors,
             message: "Veuillez corriger les erreurs ci-dessous.",
             success: false,
+            url: null,
         };
     }
     
@@ -99,6 +100,7 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
         errors: {},
         message: 'Service de paiement indisponible.',
         success: false,
+        url: null,
       };
     }
 
@@ -126,13 +128,19 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
         const result = await response.json();
         
         if (result.statut === true && result.url) {
-            redirect(result.url);
+            return {
+              errors: {},
+              message: 'Redirection vers le paiement...',
+              success: true,
+              url: result.url,
+            }
         } else {
             console.error('MoneyFusion API Error:', result.message);
             return {
                 errors: {},
                 message: result.message || 'Une erreur est survenue lors de l\'initialisation du paiement.',
                 success: false,
+                url: null,
             };
         }
     } catch (error) {
@@ -141,6 +149,7 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
             errors: {},
             message: 'Service de paiement indisponible.',
             success: false,
+            url: null,
         };
     }
 }
