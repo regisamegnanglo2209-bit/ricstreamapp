@@ -74,7 +74,7 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
     const phone_prefix = formData.get('phone_prefix');
     const phone_number = formData.get('phone_number');
     
-    const fullPhoneNumber = `${phone_prefix}${phone_number}`.replace(/\+/g, '');
+    const fullPhoneNumber = `${phone_prefix}${phone_number}`.replace(/\+/g, '').replace(/\s/g, '');
 
     const validatedFields = checkoutSchema.safeParse({
         name: formData.get('name'),
@@ -94,15 +94,7 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
     const { name, email, phone } = validatedFields.data;
     const orderNumber = `RS-${Date.now()}`;
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
-    const moneyFusionApiUrl = process.env.MONEYFUSION_API_URL;
-
-    if (!moneyFusionApiUrl) {
-      return {
-          errors: {},
-          message: 'Le service de paiement est mal configuré. Veuillez contacter le support.',
-          success: false,
-      };
-    }
+    const moneyFusionApiUrl = "https://www.pay.moneyfusion.net/RICSTREAMING/9e76e038cdb2986d/pay/";
 
     const paymentPayload = {
       totalPrice: 3900,
@@ -114,7 +106,7 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
       numeroSend: phone,
       nomclient: name,
       return_url: `${appUrl}/checkout/success?order=${orderNumber}`,
-      webhook_url: `${appUrl}/api/payment/webhook`, // Endpoint pour recevoir les notifications
+      webhook_url: `${appUrl}/api/payment/webhook`,
     };
 
     try {
@@ -125,6 +117,16 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
             },
             body: JSON.stringify(paymentPayload)
         });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error("Erreur de l'API MoneyFusion (response not ok):", errorText);
+            return {
+                errors: {},
+                message: `Le service de paiement a retourné une erreur: ${response.statusText}`,
+                success: false,
+            };
+        }
 
         const paymentData = await response.json();
         
@@ -139,7 +141,7 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
         }
 
     } catch (error) {
-        console.error("Erreur de l'API MoneyFusion:", error);
+        console.error("Erreur de l'API MoneyFusion (catch):", error);
         return {
             errors: {},
             message: 'Le service de paiement est actuellement indisponible. Veuillez réessayer plus tard.',
