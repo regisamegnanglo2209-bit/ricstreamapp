@@ -9,11 +9,11 @@ type CountdownTimerProps = {
 type TimeUnit = 'Jours' | 'Heures' | 'Minutes' | 'Secondes';
 
 const TimeBox = ({ value, unit }: { value: number; unit: TimeUnit }) => (
-  <div className="flex flex-col items-center justify-center bg-primary/20 backdrop-blur-sm rounded-lg p-3 md:p-4 w-20 md:w-24 border border-primary/50">
-    <span className="text-3xl md:text-4xl font-bold text-primary font-mono tracking-tighter">
+  <div className="flex flex-col items-center justify-center bg-card/50 backdrop-blur-sm rounded-lg p-3 md:p-4 w-20 md:w-24 border border-border">
+    <span className="text-3xl md:text-4xl font-bold text-accent font-mono tracking-tighter">
       {String(value).padStart(2, '0')}
     </span>
-    <span className="text-xs md:text-sm text-accent">{unit}</span>
+    <span className="text-xs md:text-sm text-foreground/80">{unit}</span>
   </div>
 );
 

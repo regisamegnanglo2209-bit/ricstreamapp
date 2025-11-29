@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useActionState } from 'react';
+import { useState, React, useActionState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { getRecommendationsAction } from '@/lib/actions';
 import { Button } from './ui/button';
@@ -40,7 +40,7 @@ export default function AiAssistant() {
 
   return (
     <div key={key} className="w-full max-w-2xl mx-auto text-center">
-      <Sparkles className="h-12 w-12 text-primary mx-auto mb-4" />
+      <Sparkles className="h-12 w-12 text-accent mx-auto mb-4" />
       <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl font-headline">
         Quoi regarder ensuite ?
       </h2>
@@ -68,10 +68,10 @@ export default function AiAssistant() {
       )}
 
       {state?.recommendations && state.recommendations.length > 0 && (
-        <Card className="mt-8 text-left animate-fade-in-up">
+        <Card className="mt-8 text-left animate-fade-in-up bg-background">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <List className="h-6 w-6 text-primary" />
+              <List className="h-6 w-6 text-accent" />
               Vos recommandations personnalisées
             </CardTitle>
             <CardDescription>
@@ -81,8 +81,8 @@ export default function AiAssistant() {
           <CardContent>
             <ul className="space-y-3">
               {state.recommendations.map((rec, index) => (
-                <li key={index} className="flex items-center p-3 rounded-md bg-secondary/50">
-                  <Sparkles className="h-5 w-5 mr-3 text-primary flex-shrink-0" />
+                <li key={index} className="flex items-center p-3 rounded-md bg-card">
+                  <Sparkles className="h-5 w-5 mr-3 text-accent flex-shrink-0" />
                   <span>{rec}</span>
                 </li>
               ))}

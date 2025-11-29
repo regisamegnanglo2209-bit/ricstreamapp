@@ -11,17 +11,17 @@ const heroImage = placeholderImages.find(p => p.id === 'hero-stadium');
 
 const benefits = [
   {
-    icon: <Tv className="h-10 w-10 text-primary" />,
+    icon: <Tv className="h-10 w-10 text-accent" />,
     title: 'Tous les sports, un seul endroit',
     description: 'Des ligues locales aux championnats internationaux, accédez à tous les matchs que vous aimez.',
   },
   {
-    icon: <Smartphone className="h-10 w-10 text-primary" />,
+    icon: <Smartphone className="h-10 w-10 text-accent" />,
     title: 'Streamez n\'importe où',
     description: 'Profitez d\'un streaming fluide sur votre téléphone, tablette ou smart TV avec notre application dédiée.',
   },
   {
-    icon: <ShieldCheck className="h-10 w-10 text-primary" />,
+    icon: <ShieldCheck className="h-10 w-10 text-accent" />,
     title: 'Sécurisé & Fiable',
     description: 'Notre service est soutenu par des passerelles de paiement sécurisées et une technologie de streaming fiable.',
   },
@@ -45,7 +45,7 @@ export default function Home() {
             priority
           />
         )}
-        <div className="absolute inset-0 bg-black/60 z-10"></div>
+        <div className="absolute inset-0 bg-black/70 z-10"></div>
         <div className="container relative z-20 px-4 md:px-6">
           <div className="flex flex-col items-center space-y-6">
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl font-headline text-primary animate-fade-in-down">
@@ -57,7 +57,7 @@ export default function Home() {
             <div className="flex flex-col items-center space-y-4">
               <p className="text-accent font-semibold text-lg">Offre à durée limitée se terminant dans :</p>
               <CountdownTimer targetDate={offerEndDate.toISOString()} />
-              <Button asChild size="lg" className="group bg-primary hover:bg-yellow-400 text-primary-foreground text-lg">
+              <Button asChild size="lg" className="group bg-primary hover:bg-primary/90 text-primary-foreground text-lg">
                 <Link href="/checkout">
                   Obtenez un accès instantané
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -74,7 +74,7 @@ export default function Home() {
         <div className="container px-4 md:px-6">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {benefits.map((benefit, index) => (
-              <Card key={index} className="flex flex-col items-center text-center p-6 border-2 border-transparent hover:border-primary transition-all duration-300 transform hover:-translate-y-2">
+              <Card key={index} className="flex flex-col items-center text-center p-6 border-2 border-transparent hover:border-accent transition-all duration-300 transform hover:-translate-y-2 bg-card">
                 <CardContent className="flex flex-col items-center space-y-4">
                   {benefit.icon}
                   <h3 className="text-2xl font-bold font-headline">{benefit.title}</h3>
@@ -102,7 +102,7 @@ export default function Home() {
           <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
             Votre place au premier rang du monde du sport n'est qu'à un clic. Obtenez un accès à vie maintenant avant la fin du temps imparti!
           </p>
-          <Button asChild size="lg" className="group bg-primary hover:bg-yellow-400 text-primary-foreground text-lg mt-4">
+          <Button asChild size="lg" className="group bg-primary hover:bg-primary/90 text-primary-foreground text-lg mt-4">
             <Link href="/checkout">
               Je suis prêt !
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />

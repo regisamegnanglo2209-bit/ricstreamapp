@@ -31,25 +31,25 @@ body {
   }
  
   .dark {
-    --background: 216 34% 18%; /* Dark Navy Blue from logo */
+    --background: 220 13% 10%; /* Near-black from UI */
     --foreground: 0 0% 98%; /* White-ish */
-    --card: 216 34% 22%; /* Slightly lighter blue */
+    --card: 220 13% 14%; /* Slightly lighter than background */
     --card-foreground: 0 0% 98%;
-    --popover: 216 34% 22%;
+    --popover: 220 13% 14%;
     --popover-foreground: 0 0% 98%;
-    --primary: 45 76% 60%; /* Gold from logo */
-    --primary-foreground: 216 34% 10%; /* Darker blue for contrast */
-    --secondary: 216 34% 28%;
-    --secondary-foreground: 45 76% 60%;
-    --muted: 216 34% 28%;
+    --primary: 40 90% 55%; /* Gold from logo/text */
+    --primary-foreground: 220 13% 5%; /* Dark for contrast on gold buttons */
+    --secondary: 150 40% 30%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 150 40% 20%;
     --muted-foreground: 240 5% 64.9%;
-    --accent: 45 76% 75%; /* Lighter Gold */
-    --accent-foreground: 216 34% 10%; /* Darker blue for contrast */
+    --accent: 150 70% 45%; /* Bright Green from UI highlights */
+    --accent-foreground: 0 0% 98%; /* White for contrast on green */
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 216 34% 28%;
-    --input: 216 34% 28%;
-    --ring: 45 76% 60%;
+    --border: 150 40% 25%;
+    --input: 150 40% 20%;
+    --ring: 150 70% 45%; /* Green for focus rings */
   }
 }
  
