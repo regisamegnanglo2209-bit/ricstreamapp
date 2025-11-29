@@ -18,25 +18,25 @@ export default function PrivacyPolicyPage() {
           <h2 className="text-2xl font-bold text-foreground mb-4 font-headline">1. Collecte des Informations</h2>
           <p>
             Nous collectons les informations que vous nous fournissez directement lors de l'achat de notre Pack. Cela inclut :
-            <ul className="list-disc list-inside mt-2 space-y-1">
-              <li>Votre nom complet</li>
-              <li>Votre adresse e-mail (Gmail)</li>
-              <li>Votre numéro de téléphone</li>
-            </ul>
           </p>
+          <ul className="list-disc list-inside mt-2 space-y-1 pl-4">
+            <li>Votre nom complet</li>
+            <li>Votre adresse e-mail (Gmail)</li>
+            <li>Votre numéro de téléphone</li>
+          </ul>
         </section>
 
         <section>
           <h2 className="text-2xl font-bold text-foreground mb-4 font-headline">2. Utilisation des Informations</h2>
           <p>
             Les informations que nous collectons sont utilisées exclusivement pour les finalités suivantes :
-            <ul className="list-disc list-inside mt-2 space-y-1">
-              <li>Pour traiter votre commande et votre paiement.</li>
-              <li>Pour vous envoyer l'e-mail de confirmation contenant l'APK, le guide et les informations de support.</li>
-              <li>Pour vous fournir une assistance personnalisée lorsque vous nous contactez.</li>
-              <li>Pour vous informer des mises à jour importantes concernant le service.</li>
-            </ul>
           </p>
+          <ul className="list-disc list-inside mt-2 space-y-1 pl-4">
+            <li>Pour traiter votre commande et votre paiement.</li>
+            <li>Pour vous envoyer l'e-mail de confirmation contenant l'APK, le guide et les informations de support.</li>
+            <li>Pour vous fournir une assistance personnalisée lorsque vous nous contactez.</li>
+            <li>Pour vous informer des mises à jour importantes concernant le service.</li>
+          </ul>
         </section>
 
         <section>
