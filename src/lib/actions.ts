@@ -94,34 +94,42 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
     const { name, email, phone } = validatedFields.data;
     const orderNumber = `RS-${Date.now()}`;
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+    const moneyFusionApiUrl = process.env.MONEYFUSION_API_URL;
+
+    if (!moneyFusionApiUrl) {
+      return {
+          errors: {},
+          message: 'Le service de paiement est mal configuré. Veuillez contacter le support.',
+          success: false,
+      };
+    }
+
+    const paymentPayload = {
+      totalPrice: 3900,
+      article: [{ "PACKRICSTREAMING": 3900 }],
+      personal_Info: [{
+        orderId: orderNumber,
+        email: email,
+      }],
+      numeroSend: phone,
+      nomclient: name,
+      return_url: `${appUrl}/checkout/success?order=${orderNumber}`,
+      webhook_url: `${appUrl}/api/payment/webhook`, // Endpoint pour recevoir les notifications
+    };
 
     try {
-        const response = await fetch('https://api.moneyfusion.net/v1/payment/init', {
+        const response = await fetch(moneyFusionApiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${process.env.MONEYFUSION_API_KEY}`
             },
-            body: JSON.stringify({
-                amount: 3900,
-                currency: 'XOF',
-                description: `Paiement pour PACKRICSTREAMING - Commande ${orderNumber}`,
-                customer_name: name,
-                customer_email: email,
-                customer_phone: phone,
-                return_url: `${appUrl}/checkout/success?order=${orderNumber}`,
-                cancel_url: `${appUrl}/checkout`,
-                callback_url: `${appUrl}/api/payment/callback`,
-                metadata: {
-                  order_id: orderNumber,
-                }
-            })
+            body: JSON.stringify(paymentPayload)
         });
 
         const paymentData = await response.json();
-
-        if (paymentData.status === 'success' && paymentData.data.payment_url) {
-            redirect(paymentData.data.payment_url);
+        
+        if (paymentData.statut === true && paymentData.url) {
+            redirect(paymentData.url);
         } else {
              return {
                 errors: {},
