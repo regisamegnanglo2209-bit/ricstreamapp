@@ -106,8 +106,8 @@ export async function processCheckoutAction(prevState: any, formData: FormData) 
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
 
     const paymentData = {
-        totalPrice: 200,
-        article: [{ "pack": 200 }],
+        totalPrice: 3900,
+        article: [{ "pack": 3900 }],
         personal_Info: [{ userId: validatedFields.data.email, orderId: orderId }],
         numeroSend: validatedFields.data.phone,
         nomclient: validatedFields.data.name,
