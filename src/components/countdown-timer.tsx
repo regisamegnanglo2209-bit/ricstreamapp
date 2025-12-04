@@ -2,10 +2,6 @@
 
 import { useState, useEffect } from 'react';
 
-type CountdownTimerProps = {
-  targetDate: string;
-};
-
 type TimeUnit = 'Jours' | 'Heures' | 'Minutes' | 'Secondes';
 
 const TimeBox = ({ value, unit }: { value: number; unit: TimeUnit }) => (
@@ -17,46 +13,68 @@ const TimeBox = ({ value, unit }: { value: number; unit: TimeUnit }) => (
   </div>
 );
 
-export default function CountdownTimer({ targetDate }: CountdownTimerProps) {
+const COUNTDOWN_KEY = 'ricstreaming-countdown-target';
+
+export default function CountdownTimer() {
+  const [targetDate, setTargetDate] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
   });
-  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    // This effect runs only on the client
+    const storedTarget = localStorage.getItem(COUNTDOWN_KEY);
+
+    if (storedTarget && new Date(storedTarget) > new Date()) {
+      setTargetDate(storedTarget);
+    } else {
+      const newTarget = new Date();
+      newTarget.setHours(newTarget.getHours() + 72);
+      localStorage.setItem(COUNTDOWN_KEY, newTarget.toISOString());
+      setTargetDate(newTarget.toISOString());
+    }
   }, []);
 
   useEffect(() => {
-    if (!isClient) return;
+    if (!targetDate) return;
 
     const calculateTimeLeft = () => {
       const difference = +new Date(targetDate) - +new Date();
-      let timeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+      let newTimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
       if (difference > 0) {
-        timeLeft = {
+        newTimeLeft = {
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
           hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
           minutes: Math.floor((difference / 1000 / 60) % 60),
           seconds: Math.floor((difference / 1000) % 60),
         };
+      } else {
+        // If countdown finishes, reset it for 72 hours from now
+        const newTarget = new Date();
+        newTarget.setHours(newTarget.getHours() + 72);
+        localStorage.setItem(COUNTDOWN_KEY, newTarget.toISOString());
+        setTargetDate(newTarget.toISOString());
       }
-      return timeLeft;
+      return newTimeLeft;
     };
 
+    // Set initial time left
     setTimeLeft(calculateTimeLeft());
+
+    // Update every second
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
 
+    // Cleanup interval on component unmount
     return () => clearInterval(timer);
-  }, [targetDate, isClient]);
-
-  if (!isClient) {
+  }, [targetDate]);
+  
+  if (!targetDate) {
     return (
         <div className="flex space-x-2 md:space-x-4 animate-pulse">
             <TimeBox value={0} unit="Jours" />
